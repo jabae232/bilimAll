@@ -38,6 +38,7 @@ class _FeaturedScreenBody extends StatelessWidget {
   List<CoursesModel>? courses;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
@@ -58,11 +59,9 @@ class _FeaturedScreenBody extends StatelessWidget {
                     width: 24,
                     height: 24,
                   )),
-              elevation: 1,
-              backgroundColor: AppColors.defaultBackground,
               title: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 19, horizontal: 10),
+                  const EdgeInsets.symmetric(vertical: 19, horizontal: 10),
                   child: Row(
                     children: [
                       Text(
@@ -76,6 +75,8 @@ class _FeaturedScreenBody extends StatelessWidget {
                       ),
                     ],
                   )),
+              elevation: 1,
+              backgroundColor: AppColors.defaultBackground,
             ),
           ];
         },
