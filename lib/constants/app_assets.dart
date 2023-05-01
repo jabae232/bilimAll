@@ -24,7 +24,6 @@ class _Images{
   const _Images();
   final String logo = 'assets/images/bitmap/logo.png';
   final String quote = 'assets/images/bitmap/quote.png';
-  final String course = 'assets/images/bitmap/course_example.png';
   final String courseExOne = 'assets/images/bitmap/course1.png';
   final String courseExTwo = 'assets/images/bitmap/course2.png';
   final String gradientAccount = 'assets/images/bitmap/gradient_account.png';

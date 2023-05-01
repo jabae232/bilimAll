@@ -1,7 +1,7 @@
 
-import 'package:bilim_all/screens/ui/bottom_navigation_bar/bottom_nav_bar.dart';
-import 'package:bilim_all/screens/ui/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import '../src/features/ui/bottom_navigation_bar/bottom_nav_bar.dart';
+import '../src/features/ui/login_screen/login_screen.dart';
 
 class MainNavigationRouteNames {
   static const String loginPage = '/';
