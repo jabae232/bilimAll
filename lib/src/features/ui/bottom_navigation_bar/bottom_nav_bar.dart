@@ -2,12 +2,12 @@ import 'package:bilim_all/constants/app_styles.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../account_screen/account_screen.dart';
 import '../featured_screen/ui/featured_screen.dart';
-import '../learning_screen/learning_screen.dart';
+import '../learning_screen/ui/learning_screen.dart';
 import '../search_screen/search_screen.dart';
 import '../wishlist_screen/wishlist_screen.dart';
 
@@ -56,31 +56,31 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       : AppColors.unselectedIconColor,
                     width: 25,height: 25
                 ),
-                label: 'Featured',),
+                label: '${AppLocalizations.of(context)?.featured}',),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(AppAssets.svg.search,
                     color: _selectedTab == 1
                         ? AppColors.selectedIconColor
                         : AppColors.unselectedIconColor,width: 25,height: 25),
-                label: 'Ara'),
+                label: '${AppLocalizations.of(context)?.search}'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(AppAssets.svg.learning,
                     color: _selectedTab == 2
                         ? AppColors.selectedIconColor
                         : AppColors.unselectedIconColor,width: 25,height: 25,),
-                label: 'My learning'),
+                label: '${AppLocalizations.of(context)?.myLearning}'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(AppAssets.svg.wishlist,
                     color: _selectedTab == 3
                         ? AppColors.selectedIconColor
                         : AppColors.unselectedIconColor),
-                label: 'Wishlist'),
+                label: '${AppLocalizations.of(context)?.wishlist}'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(AppAssets.svg.account,
                     color: _selectedTab == 4
                         ? AppColors.selectedIconColor
                         : AppColors.unselectedIconColor,width: 25,height: 25),
-                label: 'Account'),
+                label: '${AppLocalizations.of(context)?.account}'),
           ],
         ),
       ),

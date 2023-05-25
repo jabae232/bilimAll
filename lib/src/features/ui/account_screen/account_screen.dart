@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_styles.dart';
@@ -32,17 +32,6 @@ class _AccountScreenBody extends StatelessWidget {
       body:NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-          /*  SliverAppBar(
-              leading: InkWell(
-                onTap: () => Navigator.pop(context),
-                child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Icon(Icons.chevron_left)),
-              ),
-              elevation: 0,
-              backgroundColor: AppColors.defaultBackground,
-              title:  Image(image: AssetImage(AppAssets.images.gradientAccount)),
-            ),*/
             SliverToBoxAdapter(
               child:  Stack(
                 children: [
@@ -52,15 +41,6 @@ class _AccountScreenBody extends StatelessWidget {
                       left: 65,
                       right: 65,
                       child: Image(image: AssetImage(AppAssets.images.logo))),
-                  /*Positioned(
-                      top: 50,
-                      left: 24,
-                      child: InkWell(
-                        onTap: () => Navigator.pop(context),
-                        child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Icon(Icons.chevron_left,color: AppColors.defaultBackground,size: 30,)),
-                      ),),*/
                 ],
               ),
             ),
@@ -77,7 +57,7 @@ class _AccountScreenBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Expanded(flex: 1,child: SizedBox(),),
-                      Expanded(flex: 2,child: Text('Username',style: AppStyles.s30w500.copyWith(color: AppColors.black),),),
+                      Expanded(flex: 2,child: Text('${AppLocalizations.of(context)?.username}',style: AppStyles.s30w500.copyWith(color: AppColors.black),),),
                       InkWell(
                         onTap: () => AccountScreenModelProvider.read(context)?.model.editProfile(context),
                           child: SvgPicture.asset(AppAssets.svg.settings)),
@@ -89,8 +69,8 @@ class _AccountScreenBody extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Expanded(child: Text('Email',style: AppStyles.s12w400.copyWith(fontWeight: FontWeight.w500,color:AppColors.authorNeutralTextColor ),)),
-                        Expanded(child: Text('Password',style: AppStyles.s12w400.copyWith(fontWeight: FontWeight.w500,color:AppColors.authorNeutralTextColor))),
+                        Expanded(child: Text('${AppLocalizations.of(context)?.username}',style: AppStyles.s12w400.copyWith(fontWeight: FontWeight.w500,color:AppColors.authorNeutralTextColor ),)),
+                        Expanded(child: Text('${AppLocalizations.of(context)?.password}',style: AppStyles.s12w400.copyWith(fontWeight: FontWeight.w500,color:AppColors.authorNeutralTextColor))),
                       ],
                     ),
                     Row(

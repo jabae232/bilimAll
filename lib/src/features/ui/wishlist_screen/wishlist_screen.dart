@@ -7,7 +7,7 @@ import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_styles.dart';
 import '../featured_screen/ui/widgets/courses/course.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _WishlistScreenBody extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.zero,
                 centerTitle: true,
-                title: Text('Wishlist',style: AppStyles.s20w500.copyWith(color: AppColors.mainBlue),),
+                title: Text('${AppLocalizations.of(context)?.wishlist}',style: AppStyles.s20w500.copyWith(color: AppColors.mainBlue),),
               ),
             ),
           ];
@@ -52,31 +52,7 @@ class _WishlistScreenBody extends StatelessWidget {
         body: SingleChildScrollView(
             child:Column(
               children: [
-                CoursesTile(
-                    color: '23',
-                    image: 'https://4lapy.ru/resize/1664x1000/upload/medialibrary/270/2703fd71a17c0843c0b91bbe28c4fe0f.jpg',
-                    author: 'Rakhat Kanatov',
-                    fieldOfCourse: 'Art & Design',
-                    nameOfCourse: 'Become a product manager learn the skills & job',
-                    numberOflessons: '43',
-                    ratings: '4.5(44)',isLiked: true),
-                CoursesTile(
-                    color: '23',
-                    image: 'https://4lapy.ru/resize/1664x1000/upload/medialibrary/270/2703fd71a17c0843c0b91bbe28c4fe0f.jpg',
-                    author: 'Marya Eralanova',
-                    fieldOfCourse: 'UX Design',
-                    nameOfCourse: 'Fundamentals of music theory Learn new',
-                    numberOflessons: '72',
-                    ratings: '4.0(44)',isLiked: true),
-                CoursesTile(
-                  color: '23',
-                    image: 'https://4lapy.ru/resize/1664x1000/upload/medialibrary/270/2703fd71a17c0843c0b91bbe28c4fe0f.jpg',
-                    author: 'Olzhas Ratbek',
-                    fieldOfCourse: 'Development',
-                    nameOfCourse: 'JavaScript from zero',
-                    numberOflessons: '35',
-                    ratings: '4.3(44)',isLiked: true),
-              ],
+              ]
             ),
         ),
       ),

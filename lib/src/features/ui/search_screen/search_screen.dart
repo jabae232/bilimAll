@@ -3,7 +3,7 @@ import 'package:bilim_all/src/features/ui/search_screen/search_screen_model.dart
 import 'package:bilim_all/src/features/ui/search_screen/widgets/top_searches.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_styles.dart';
@@ -50,7 +50,7 @@ class _SearchScreenBody extends StatelessWidget {
                           height: 15.6,
                         ),
                       ),
-                      hintText: "Search",
+                      hintText: "${AppLocalizations.of(context)?.search}",
                       hintStyle: AppStyles.s15w400,
                       fillColor: AppColors.loginField,
                       filled: true,
@@ -74,7 +74,7 @@ class _SearchScreenBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Top Searches',style: AppStyles.s16w600,),
+                  Text('${AppLocalizations.of(context)?.topSearch}',style: AppStyles.s16w600,),
                   Row(
                    children: const [
                      TopSearch(searchName: 'C#',),

@@ -14,4 +14,5 @@ class AppColors {
   static const green = Color(0xFF30A820);
   static const line = Color(0xFFDADADA);
   static const black = Color(0xFF0E1133);
+  static const progressLineColor = Color(0xFF3444F1);
  }
