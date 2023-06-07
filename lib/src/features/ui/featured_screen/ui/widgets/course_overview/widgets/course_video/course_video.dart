@@ -10,35 +10,24 @@ class CourseVideoSample extends StatelessWidget {
       {Key? key,
       required this.name,
       required this.isWatched,
-      required this.links,
       required this.index})
       : super(key: key);
   final String name;
   final bool isWatched;
-  final List<Videos> links;
   final int index;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => CheckLessonVideos(
-                    index: index,
-                    links: links,
-                  ))),
-      child: Row(
-        children: [
-          Checkbox(value: false, onChanged: (value) => () {}),
-          Expanded(
-              child: Text(
-            name,
-            style: AppStyles.s15w400
-                .copyWith(color: AppColors.black, fontSize: 13),
-            maxLines: 3,
-          )),
-        ],
-      ),
+    return Row(
+      children: [
+        Checkbox(value: false, onChanged: (value) => () {}),
+        Expanded(
+            child: Text(
+          name,
+          style: AppStyles.s15w400
+              .copyWith(color: AppColors.black, fontSize: 13),
+          maxLines: 3,
+        )),
+      ],
     );
   }
 }

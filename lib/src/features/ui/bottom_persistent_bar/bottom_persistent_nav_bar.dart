@@ -1,7 +1,7 @@
-import 'package:bilim_all/src/features/ui/account_screen/account_screen.dart';
+import 'package:bilim_all/src/features/ui/account_screen/ui/account_screen.dart';
 import 'package:bilim_all/src/features/ui/learning_screen/ui/learning_screen.dart';
 import 'package:bilim_all/src/features/ui/search_screen/search_screen.dart';
-import 'package:bilim_all/src/features/ui/wishlist_screen/wishlist_screen.dart';
+import 'package:bilim_all/src/features/ui/wishlist_screen/ui/wishlist_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
       AccountScreen(),
     ];
   }
-  final color = Colors.cyan;
+  final color = AppColors.mainBlue;
   List<PersistentBottomNavBarItem> _navBarsItems() => [
         PersistentBottomNavBarItem(
             icon:

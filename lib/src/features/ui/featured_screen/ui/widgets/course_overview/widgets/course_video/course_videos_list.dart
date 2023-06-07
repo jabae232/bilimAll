@@ -7,15 +7,6 @@ class VideosList extends StatelessWidget {
   final List<VideoLesson> list;
   @override
   Widget build(BuildContext context) {
-    final List<Videos> videosLinks = [];
-    for(int i = 0; i < list.length; i++) {
-      final int trueLinkStart = list[i].iframe.indexOf('https://');
-      final int trueLinkFinish = list[i].iframe.indexOf('\" title');
-      final trueLink = list[i].iframe.substring(trueLinkStart, trueLinkFinish);
-      final name = list[i].name;
-      videosLinks.add(Videos(link: trueLink, name: name));
-      print(trueLink);
-    }
     return MediaQuery.removePadding(
         context: context,
         removeTop: true,
@@ -25,7 +16,6 @@ class VideosList extends StatelessWidget {
         return CourseVideoSample(
           name: list[index].name,
           isWatched: false,
-          links: videosLinks,
           index: index,
         );
       },

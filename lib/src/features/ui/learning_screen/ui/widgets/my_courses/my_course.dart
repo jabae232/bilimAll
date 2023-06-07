@@ -53,7 +53,7 @@ class MyCourse extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(course.name,style: AppStyles.s14w600.copyWith(color: Colors.black),),
-                  Text(course.teachers.first.fullName,style: AppStyles.s14w600.copyWith(color: AppColors.neutralTextColor),),
+                  Text(course.teachers.first.fullName!,style: AppStyles.s14w600.copyWith(color: AppColors.neutralTextColor),),
                 const SizedBox(height: 10),
                 ProgressLine(),
                 ],

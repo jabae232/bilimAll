@@ -1,39 +1,34 @@
 import 'package:bilim_all/constants/app_assets.dart';
 import 'package:bilim_all/constants/app_styles.dart';
 import 'package:bilim_all/src/features/ui/featured_screen/data/bloc/courses_bloc.dart';
-import 'package:bilim_all/src/features/ui/featured_screen/data/dto/courses.dart';
 import 'package:bilim_all/src/features/ui/wishlist_screen/data/bloc/wishlist_screen_bloc.dart';
+import 'package:bilim_all/src/features/ui/wishlist_screen/data/dto/wishlist_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../../../constants/app_colors.dart';
-import '../course_overview/course_overview.dart';
-
-class CoursesTile extends StatelessWidget {
-  const CoursesTile(
-      {Key? key,
-required this.course})
+import 'one_list_overview.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+class WishlistTile extends StatelessWidget {
+  const WishlistTile({Key? key, required this.course, required this.isChecked})
       : super(key: key);
-  final Courses course;
-  void checkCourse(context, Courses course) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CourseOverviewInfoScreen(
-          course: course,
-        ),
-      ),
-    );
-  }
+  final WishlistDto course;
+  final bool isChecked;
 
   @override
   Widget build(BuildContext context) {
     var colors = '0xFF${course.category.color.replaceAll('#', '')}';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 18),
-      child: InkWell(
-        onTap: () => checkCourse(context, course),
+      child: GestureDetector(
+        onTap: () => isChecked
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OneListTileOverView(
+                          course: course,
+                        )))
+            : null,
         child: Container(
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
@@ -64,7 +59,7 @@ required this.course})
                         Row(
                           children: [
                             Text(
-                              '${course.videoLessons.length} Lessons',
+                              '${course.videoLessons.length} ${AppLocalizations.of(context)?.lessons}',
                               style: AppStyles.s16w600
                                   .copyWith(color: AppColors.neutralTextColor),
                             ),
@@ -81,7 +76,8 @@ required this.course})
                         Row(
                           children: [
                             CircleAvatar(
-                              backgroundImage: NetworkImage("${course.teachers.first.avatar}"),
+                              backgroundImage:
+                                  NetworkImage(course.teachers.first.avatar),
                               backgroundColor: Colors.transparent,
                             ),
                             const SizedBox(
@@ -106,13 +102,15 @@ required this.course})
                           child: Row(
                             children: [
                               Text(
-                                course.price == 0 ? 'Free' : course.price.toString(),
+                                course.price == 0
+                                    ? '${AppLocalizations.of(context)?.free}'
+                                    : course.price.toString(),
                                 style: AppStyles.s20w600
                                     .copyWith(color: Color(int.parse(colors))),
                               ),
                               const Expanded(child: SizedBox()),
                               Text(
-                                'Know Details',
+                                '${AppLocalizations.of(context)?.knowDetails}',
                                 style: AppStyles.s20w600,
                               ),
                             ],
@@ -143,13 +141,17 @@ required this.course})
               Positioned(
                   right: 5,
                   top: 5,
-                  child: InkWell(
-                    onTap: () async {
-                      context.read<CoursesBloc>().add(AddCourseEvent(id: course.id));
-                      context.read<WishlistScreenBloc>().add(GetWishlistEvent());
-                    },
-                    child: SvgPicture.asset(AppAssets.svg.unliked),
-                  )),
+                  child: GestureDetector(
+                      onTap: () async {
+                        BlocProvider.of<WishlistScreenBloc>(context)
+                            .add(RemoveWishlistEvent(id: course.id));
+                        context.read<CoursesBloc>().add(GetCoursesEvent());
+                        if (!isChecked) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: InkWell(
+                          child: SvgPicture.asset(AppAssets.svg.liked)))),
             ],
           ),
         ),

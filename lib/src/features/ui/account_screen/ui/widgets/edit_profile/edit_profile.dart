@@ -4,7 +4,9 @@ import 'package:bilim_all/constants/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
-import '../../../../../../main.dart';
+import '../../../../../../../main.dart';
+import '../../../../../../../navigation/main_navigation.dart';
+import '../../../../../shared_pref/shared_pref.dart';
 import 'edit_profile_model.dart';
 
 class EditProfile extends StatefulWidget {
@@ -25,7 +27,7 @@ class _EditProfileState extends State<EditProfile> {
 
 class _EditProfileBody extends StatelessWidget {
   const _EditProfileBody({Key? key}) : super(key: key);
-
+  Future<void> leave(context) async {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,39 +98,58 @@ class _EditProfileBody extends StatelessWidget {
                   title: '${AppLocalizations.of(context)?.changePassword}',
                   subtitle: '123456789'),
               GestureDetector(
-                onTap: () {
-
-                },
-                  child: DropdownButton<String>(
-                      value: Intl.getCurrentLocale(),
-                      items: [
-                        DropdownMenuItem(
-                          value: 'en_US',
-                          child: Text(
-                            AppLocalizations.of(context)!.english,
-                          ),
+                child: DropdownButton<String>(
+                    value: Intl.getCurrentLocale(),
+                    items: [
+                      DropdownMenuItem(
+                        value: 'en_US',
+                        child: Text(
+                          AppLocalizations.of(context)!.english,
                         ),
-                        DropdownMenuItem(
-                          value: 'ru_RU',
-                          child: Text(AppLocalizations.of(context)!.russian),
-                        ),
-                        DropdownMenuItem(
-                          value: 'kk_KK',
-                          child: Text(AppLocalizations.of(context)!.kazakh),
-                        )
-                      ],
-                      onChanged:(value) async{
-                        if(value == null) return;
-                        if(value == 'ru_RU') {
-                          MyApp.of(context)?.setLocale(const Locale.fromSubtags(languageCode: 'ru'));
-                        } else if(value == 'en_US') {
-                          MyApp.of(context)?.setLocale(const Locale.fromSubtags(languageCode: 'en'));
-                        }
-                        else if(value == 'kk_KK') {
-                          MyApp.of(context)?.setLocale(const Locale.fromSubtags(languageCode: 'kk'));
-                        }
+                      ),
+                      DropdownMenuItem(
+                        value: 'ru_RU',
+                        child: Text(AppLocalizations.of(context)!.russian),
+                      ),
+                      DropdownMenuItem(
+                        value: 'kk_KK',
+                        child: Text(AppLocalizations.of(context)!.kazakh),
+                      )
+                    ],
+                    onChanged: (value) async {
+                      if (value == null) return;
+                      if (value == 'ru_RU') {
+                        MyApp.of(context)?.setLocale(
+                            const Locale.fromSubtags(languageCode: 'ru'));
+                      } else if (value == 'en_US') {
+                        MyApp.of(context)?.setLocale(
+                            const Locale.fromSubtags(languageCode: 'en'));
+                      } else if (value == 'kk_KK') {
+                        MyApp.of(context)?.setLocale(
+                            const Locale.fromSubtags(languageCode: 'kk'));
                       }
-                  ),),
+                    }),
+              ),
+              InkWell(
+                onTap: () => EditProfileModelProvider.read(context)
+                    ?.model
+                    .leave(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Icon(
+                          Icons.exit_to_app,
+                          color: Colors.red,
+                          size: 30,
+                        )),
+                    Text(
+                      "Exit",
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         )),

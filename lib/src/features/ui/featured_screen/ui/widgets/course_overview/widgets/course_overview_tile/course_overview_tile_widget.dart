@@ -74,7 +74,7 @@ class CoursesOverViewTile extends StatelessWidget {
                             width: 15,
                           ),
                           Text(
-                            course.teachers.first.fullName,
+                            course.teachers.first.fullName!,
                             style: AppStyles.s16w500.copyWith(
                                 color: AppColors.authorNeutralTextColor),
                           ),

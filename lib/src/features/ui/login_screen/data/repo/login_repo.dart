@@ -12,8 +12,6 @@ class RepoLogin {
 
   final Api api;
   Future<void> login(String username,String password) async {
-    print(username);
-    print(password);
     final result = await api.dio.post(
       '/login/',data: {"email": username, "password": password}
     );

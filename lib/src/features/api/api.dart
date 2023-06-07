@@ -18,6 +18,7 @@ class _BasicInterceptor implements Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler)async {
     var token  = await SharedPrefModel().getToken();
+    print(token);
     options.headers = {
       "Accept": "application/json",
       "Authorization" :"Bearer $token"

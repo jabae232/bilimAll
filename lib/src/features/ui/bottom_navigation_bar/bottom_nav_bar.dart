@@ -5,11 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
-import '../account_screen/account_screen.dart';
+import '../account_screen/ui/account_screen.dart';
 import '../featured_screen/ui/featured_screen.dart';
 import '../learning_screen/ui/learning_screen.dart';
 import '../search_screen/search_screen.dart';
-import '../wishlist_screen/wishlist_screen.dart';
+import '../wishlist_screen/ui/wishlist_screen.dart';
 
 
 class BottomNavBar extends StatefulWidget {
@@ -40,6 +40,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ],
         ),
         child: BottomNavigationBar(
+          selectedLabelStyle: TextStyle(fontSize: 10),
+          unselectedLabelStyle: TextStyle(fontSize: 10),
           type: BottomNavigationBarType.fixed,
           selectedItemColor: AppColors.selectedIconColor,
           unselectedItemColor: AppColors.unselectedIconColor,

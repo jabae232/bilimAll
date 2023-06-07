@@ -1,14 +1,14 @@
 // To parse this JSON data, do
 //
-//     final courses = coursesFromJson(jsonString);
+//     final wishlistDto = wishlistDtoFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Courses> coursesFromJson(String str) => List<Courses>.from(json.decode(str).map((x) => Courses.fromJson(x)));
+List<WishlistDto> wishlistDtoFromJson(String str) => List<WishlistDto>.from(json.decode(str).map((x) => WishlistDto.fromJson(x)));
 
-String coursesToJson(List<Courses> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String wishlistDtoToJson(List<WishlistDto> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Courses {
+class WishlistDto {
   String id;
   List<VideoLesson> videoLessons;
   String imageUrl;
@@ -18,9 +18,8 @@ class Courses {
   String iframe;
   Category category;
   List<Teacher> teachers;
-  bool isBought;
 
-  Courses({
+  WishlistDto({
     required this.id,
     required this.videoLessons,
     required this.imageUrl,
@@ -30,10 +29,9 @@ class Courses {
     required this.iframe,
     required this.category,
     required this.teachers,
-    required this.isBought,
   });
 
-  factory Courses.fromJson(Map<String, dynamic> json) => Courses(
+  factory WishlistDto.fromJson(Map<String, dynamic> json) => WishlistDto(
     id: json["id"],
     videoLessons: List<VideoLesson>.from(json["video_lessons"].map((x) => VideoLesson.fromJson(x))),
     imageUrl: json["image_url"],
@@ -43,7 +41,6 @@ class Courses {
     iframe: json["iframe"],
     category: Category.fromJson(json["category"]),
     teachers: List<Teacher>.from(json["teachers"].map((x) => Teacher.fromJson(x))),
-    isBought: json["isBought"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -56,7 +53,6 @@ class Courses {
     "iframe": iframe,
     "category": category.toJson(),
     "teachers": List<dynamic>.from(teachers.map((x) => x.toJson())),
-    "isBought": isBought,
   };
 }
 
@@ -115,23 +111,35 @@ class Name {
 class Teacher {
   String id;
   String? fullName;
+  String email;
+  bool isTeacher;
+  String password;
   String avatar;
 
   Teacher({
     required this.id,
     required this.fullName,
+    required this.email,
+    required this.isTeacher,
+    required this.password,
     required this.avatar,
   });
 
   factory Teacher.fromJson(Map<String, dynamic> json) => Teacher(
     id: json["id"],
-    fullName: json["full_name"] == null ? '' : json["full_name"],
-    avatar: json["avatar"] == null ? '' : json["avatar"],
+    fullName: json["full_name"],
+    email: json["email"],
+    isTeacher: json["isTeacher"],
+    password: json["password"],
+    avatar: json["avatar"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "full_name": fullName,
+    "email": email,
+    "isTeacher": isTeacher,
+    "password": password,
     "avatar": avatar,
   };
 }
@@ -140,22 +148,26 @@ class VideoLesson {
   String id;
   String name;
   String iframe;
+  String? text;
 
   VideoLesson({
     required this.id,
     required this.name,
     required this.iframe,
+    this.text,
   });
 
   factory VideoLesson.fromJson(Map<String, dynamic> json) => VideoLesson(
     id: json["id"],
     name: json["name"],
     iframe: json["iframe"],
+    text: json["text"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
     "iframe": iframe,
+    "text": text,
   };
 }

@@ -11,10 +11,11 @@ class MainNavigationRouteNames {
 }
 
 class MainNavigation {
+
   final initialRoute = MainNavigationRouteNames.loginPage;
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteNames.loginPage: (context) => const LoginScreen(),
-    MainNavigationRouteNames.mainNavBar: (context) => const ProvidedStylesExample(),
+    MainNavigationRouteNames.mainNavBar: (context) => const BottomNavBar(),
     MainNavigationRouteNames.test: (context) => const ProgressLine(),
   };
 }

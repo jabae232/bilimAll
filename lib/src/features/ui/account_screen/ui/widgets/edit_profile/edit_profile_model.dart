@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
-class EditProfileModel extends ChangeNotifier {
+import '../../../../../../../navigation/main_navigation.dart';
+import '../../../../../shared_pref/shared_pref.dart';
 
+class EditProfileModel extends ChangeNotifier {
+  Future<void> leave(context) async {
+    final model = SharedPrefModel();
+    if(await model.loggedRead() == 'Y') {
+      await model.loggedWrite('N');
+      await model.tokenReset();
+      Navigator.of(context).pushReplacementNamed(MainNavigationRouteNames.loginPage);
+    } else {
+      Navigator.of(context).pushReplacementNamed(MainNavigationRouteNames.loginPage);
+    }
+  }
 }
 
 class EditProfileModelProvider extends InheritedNotifier {

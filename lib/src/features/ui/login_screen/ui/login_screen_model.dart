@@ -1,5 +1,9 @@
 import 'package:bilim_all/navigation/main_navigation.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import '../../../shared_pref/shared_pref.dart';
+import '../data/dto/login.dart';
 
 class LoginScreenModel extends ChangeNotifier {
   String _password = '';
@@ -11,35 +15,36 @@ class LoginScreenModel extends ChangeNotifier {
     _visibility = value;
     notifyListeners();
   }
-  void nextPage(context) {
-    bool _checker = false;
-    if(_password.trim().length < 6) {
-      _checker = true;
-      errorPas = 'Password contains more than 6 characters';
-      notifyListeners();
-    }
-    if(_email.trim().length < 6 || !_email.trim().contains("@")) {
-      _checker = true;
-      errorEmail = 'Enter your valid email';
-      notifyListeners();
-    }
-    if(_checker) {
-      return;
-    } else {
-      Navigator.of(context).pushNamed(MainNavigationRouteNames.mainNavBar);
-    }
-  }
   set password(String value) {
     if(value != null && value.trim().isNotEmpty) {
       errorPas = null;
-      _password = value;
+      notifyListeners();
     }
+    _password = value;
   }
   set email(String value) {
     if(value != null && value.trim().isNotEmpty) {
       errorEmail = null;
-      _email = value;
+      notifyListeners();
     }
+    _email = value;
+  }
+
+  void nextPage(context) async{
+    print('$_email');
+    print('$_password');
+    print('here');
+      final response = await Dio().post('https://rocky-fortress-84759.herokuapp.com/api/login',
+          data: {"email": _email, "password": _password});
+      print(response.data);
+      if(response.statusCode == 200) {
+        final modelSharedPref = SharedPrefModel();
+        await modelSharedPref.loggedWrite('Y');
+        final token = Login.fromJson(response.data);
+        await SharedPrefModel().saveToken(token.uid);
+        Navigator.of(context).pushNamed(MainNavigationRouteNames.mainNavBar);
+      }
+
   }
 }
 
